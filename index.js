@@ -22,6 +22,11 @@ app.get("/ram/:id-:mappedId", (req, res) => {
 
 app.use('/api/',one);
 
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
 app.listen(PORT, () => {
   console.log(`express app listening on port  ${PORT}`);
 });
